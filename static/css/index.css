@@ -1,0 +1,11 @@
+#map {
+    height: 400px;
+}
+
+.vizspace, .card {
+    margin-bottom: 20px;
+}
+
+footer {
+    text-align: center;
+}
