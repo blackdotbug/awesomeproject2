@@ -17,7 +17,7 @@ servicerequests = mongo.db.servicerequests
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", mapbox = os.environ['MAPBOX'])
 
 @app.route("/api/v1/home")
 def apiHome():
