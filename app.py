@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, redirect, url_for, jsonify, request
 from flask_pymongo import PyMongo
 from flask_cors import CORS
@@ -8,7 +9,9 @@ CORS(app)
 
 app.config["DEBUG"] = True
 
-app.config["MONGO_URI"] = "mongodb://localhost:27017/awesomedb"
+app.config["MONGO_URI"] = os.environ['MONGO_URI']
+# app.config["MONGO_URI"] = "mongodb://localhost:27017/awesomedb"
+
 mongo = PyMongo(app)
 servicerequests = mongo.db.servicerequests
 
