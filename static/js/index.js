@@ -44,9 +44,9 @@ function buildStatusChart(array, year) {
     }
     barTraces.push(trace)
   })
-  
+
   var data = barTraces;
-  var layout = {barmode: 'stack'};  
+  var layout = {barmode: 'stack'};
   Plotly.newPlot(`graph2-${year}`, data, layout);
 
 }
@@ -83,7 +83,7 @@ function buildDaysOpenChart(data) {
     type: 'bar'
   }
   var data = [trace2019, trace2020];
-  var layout = {barmode: 'group'};  
+  var layout = {barmode: 'group'};
   Plotly.newPlot(`graph3`, data, layout);
 
 }
@@ -113,7 +113,7 @@ function init(dupes) {
 
     let testdate = moment(data[0].attributes.ADDDATE)
     setActiveButton(testdate.format("MMM"))
-    
+
     data.forEach(location => {
       let adddate = moment(location.attributes.ADDDATE)
       let resolutiondate = moment(location.attributes.RESOLUTIONDATE)
@@ -162,7 +162,7 @@ statustabs.forEach(tab => {
     let pane = document.getElementById(this.dataset.controls)
     pane.classList.add("active")
     let chartdiv = pane.getElementsByTagName('div')
-    Plotly.relayout(chartdiv[0].id, {autosize: true})  
+    Plotly.relayout(chartdiv[0].id, {autosize: true})
   })
 })
 

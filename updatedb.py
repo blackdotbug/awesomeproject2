@@ -17,7 +17,21 @@ def idDupes(code):
         return False
 
 def updateDB(collection, month):
-    between = f"ADDDATE BETWEEN DATE '2019-0{month}-01' AND DATE '2019-0{int(month)+1}-01'"
+    begin = f"0{month}"
+    end19 = f"2019-0{int(month)+1}-01"
+    end20 = f"2020-0{int(month)+1}-01"
+    if int(month) > 9:
+        begin = f"{month}"
+        if int(month) == 12:
+            end19 = "2019-12-31"
+            end20 = "2020-12-31"
+        else:
+            end19 = f"2019-{int(month)+1}-01"
+            end20 = f"2020-{int(month)+1}-01"
+    elif int(month) == 9:
+        end19 = "2019-10-01"
+        end20 = "2020-10-01"
+    between = f"ADDDATE BETWEEN DATE '2019-{begin}-01' AND DATE '{end19}'"
     r2019 = requests.get(f"https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/ServiceRequests/MapServer/10/query?where={between}&outFields=*&outSR=4326&f=json")
     data2019 = r2019.json()
     features2019 = data2019['features']
@@ -26,7 +40,7 @@ def updateDB(collection, month):
         entry['attributes']["STATUS"] = convertCodes(code)
         entry['attributes']["DUPLICATE"] = idDupes(code)
         entry['attributes']["YEAR"] = "2019"
-    between = f"ADDDATE BETWEEN DATE '2020-0{month}-01' AND DATE '2020-0{int(month)+1}-01'"
+    between = f"ADDDATE BETWEEN DATE '2020-{begin}-01' AND DATE '{end20}'"
     r2020 = requests.get(f"https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/ServiceRequests/MapServer/11/query?where={between}&outFields=*&outSR=4326&f=json")
     data2020 = r2020.json()
     features2020 = data2020['features']
