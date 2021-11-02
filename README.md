@@ -9,3 +9,6 @@ A mapbox access token is required to run the app locally. You can add a `config.
 ## Still to come:
 
 A second branch will be added to show the difference between setting up an app to run locally and setting it up for heroku deployment. Stay tuned. 
+
+
+## This is only on the heather_square branch
